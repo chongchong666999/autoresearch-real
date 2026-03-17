@@ -1,7 +1,7 @@
 ---
 name: autoresearch
 description: Autonomous Goal-directed Iteration. Apply Karpathy's autoresearch principles to ANY task. Loops autonomously — modify, verify, keep/discard, repeat. Supports bounded iteration via Iterations: N inline config.
-version: 1.6.0
+version: 1.6.1
 ---
 
 # Claude Autoresearch — Autonomous Goal-directed Iteration
@@ -416,7 +416,7 @@ LOOP (FOREVER or N times):
 4. **Mechanical verification only** — No subjective "looks good". Use metrics
 5. **Automatic rollback** — Failed changes revert instantly. No debates
 6. **Simplicity wins** — Equal results + less code = KEEP. Tiny improvement + ugly complexity = DISCARD
-7. **Git is memory** — Every kept change committed. Agent reads history to learn patterns
+7. **Git is memory** — Every experiment committed with `experiment:` prefix. Use `git revert` (not `git reset --hard`) for rollbacks so failed experiments remain visible in history. Agent MUST read `git log` and `git diff` of kept commits to learn patterns before each iteration
 8. **When stuck, think harder** — Re-read files, re-read goal, combine near-misses, try radical changes. Don't ask for help unless truly blocked by missing access/permissions
 
 ## Principles Reference

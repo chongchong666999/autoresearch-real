@@ -7,7 +7,7 @@
 Based on [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) — constraint + mechanical metric + autonomous iteration = compounding gains.
 
 [![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blue?logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
-[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
+[![Version](https://img.shields.io/badge/version-1.6.1-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Based on](https://img.shields.io/badge/Based_on-Karpathy's_Autoresearch-orange)](https://github.com/karpathy/autoresearch)
 [![Follow @iuditg](https://img.shields.io/badge/Follow-@iuditg-000000?style=flat&logo=x&logoColor=white)](https://x.com/intent/follow?screen_name=iuditg)
@@ -70,7 +70,7 @@ Before looping, Claude performs a one-time setup:
 | 4 | **Mechanical verification only** — no subjective "looks good." Use metrics |
 | 5 | **Automatic rollback** — failed changes revert instantly |
 | 6 | **Simplicity wins** — equal results + less code = KEEP |
-| 7 | **Git is memory** — every kept change committed |
+| 7 | **Git is memory** — experiments committed with `experiment:` prefix, `git revert` preserves failed experiments in history, agent MUST read `git log` + `git diff` before each iteration |
 | 8 | **When stuck, think harder** — re-read, combine near-misses, try radical changes |
 
 ---
