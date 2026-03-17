@@ -23,9 +23,10 @@
 ```
 [1/6] Create release branch (release/X.Y.Z)
 [2/6] Bump versions:
-      → .claude-plugin/plugin.json  (version field)
-      → README.md                   (version badge)
-      → GUIDE.md                    (version badge)
+      → .claude-plugin/plugin.json       (version field)
+      → .claude-plugin/marketplace.json  (version fields — top-level + plugins array)
+      → README.md                        (version badge)
+      → GUIDE.md                         (version badge)
 [3/6] Pause for doc review:
       → Shows changelog since last tag
       → Prompts you to review README.md, GUIDE.md, EXAMPLES.md, CONTRIBUTING.md

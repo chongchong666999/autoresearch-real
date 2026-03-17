@@ -39,6 +39,7 @@ VERSION="${VERSION#v}"
 TAG="v${VERSION}"
 BRANCH="release/${VERSION}"
 PLUGIN_JSON=".claude-plugin/plugin.json"
+MARKETPLACE_JSON=".claude-plugin/marketplace.json"
 
 # --- Preflight checks ---
 if [[ ! -f "$PLUGIN_JSON" ]]; then
@@ -79,13 +80,18 @@ echo ""
 echo "[1/6] Creating release branch: $BRANCH"
 git checkout -b "$BRANCH"
 
-# --- Bump version in plugin.json ---
-echo "[2/6] Bumping plugin.json: $CURRENT → $VERSION"
-if [[ "$(uname)" == "Darwin" ]]; then
-  sed -i '' "s/\"version\": \"$CURRENT\"/\"version\": \"$VERSION\"/" "$PLUGIN_JSON"
-else
-  sed -i "s/\"version\": \"$CURRENT\"/\"version\": \"$VERSION\"/" "$PLUGIN_JSON"
-fi
+# --- Bump version in plugin.json and marketplace.json ---
+echo "[2/6] Bumping versions: $CURRENT → $VERSION"
+for JSON_FILE in "$PLUGIN_JSON" "$MARKETPLACE_JSON"; do
+  if [[ -f "$JSON_FILE" ]]; then
+    echo "    Updating $JSON_FILE"
+    if [[ "$(uname)" == "Darwin" ]]; then
+      sed -i '' "s/\"version\": \"$CURRENT\"/\"version\": \"$VERSION\"/g" "$JSON_FILE"
+    else
+      sed -i "s/\"version\": \"$CURRENT\"/\"version\": \"$VERSION\"/g" "$JSON_FILE"
+    fi
+  fi
+done
 
 # --- Bump version badges in README.md and GUIDE.md ---
 for DOC_FILE in README.md GUIDE.md; do
@@ -172,6 +178,7 @@ ${CHANGELOG:-"No previous tag found — initial release."}
 
 ### Checklist
 - [x] plugin.json version bumped to $VERSION
+- [x] marketplace.json version bumped to $VERSION
 - [x] README.md version badge updated
 - [x] GUIDE.md version badge updated
 - [ ] README.md content reviewed for accuracy
